@@ -9,15 +9,16 @@
 import Foundation
 
 class Concentration {
-    var flipCount = 0
-    var score = 0
-    var cards = [Card]()
-    var emojiSet = [String]()
-    var es = EmojiSets()
+    private(set) var flipCount = 0
+    private(set) var score = 0
+    private(set) var cards = [Card]()
+    private(set) var emojiSet = [String]()
+    private var es = EmojiSets()
     
-    var indexOfOneAndOnlyFaceUpCard : Int?
+    private var indexOfOneAndOnlyFaceUpCard : Int?
     
     func chooseCard(at index : Int) {
+        assert(cards.indices.contains(index), "Concentration.chooseCard: index not in card collection")
         flipCount += 1
         
         if !cards[index].isMatched {
@@ -55,7 +56,7 @@ class Concentration {
             emojiSet = es.returnEmojiSet()
         }
         // Shuffle cards
-        var items = cards.count/2 - 1
+        var items = cards.count - 1
         while (items > 0) {
             let rand = Int(arc4random_uniform(UInt32(items)))
             if (rand != items) {cards.swapAt(items, rand)}

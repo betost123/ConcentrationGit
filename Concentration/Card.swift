@@ -15,8 +15,8 @@ struct Card {
     var flipped = 0
     var missmatches = 0
     
-    static var identifierFactory = 0
-    static func getUniqueIdentifier() -> Int {
+    private static var identifierFactory = 0
+    private static func getUniqueIdentifier() -> Int {
         identifierFactory += 1
         return identifierFactory
     }
