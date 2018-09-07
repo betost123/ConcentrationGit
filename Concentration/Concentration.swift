@@ -29,12 +29,18 @@ class Concentration {
                 }
                 cards[index].isFacedUp = true
                 indexOfOneAndOnlyFaceUpCard = nil
+                cards[index].flipped += 1
             } else {
                 for flipDownIndex in cards.indices {
                     cards[flipDownIndex].isFacedUp = false
+                    cards[index].missmatches += 1
+                }
+                if (cards[index].flipped > 1 && cards[index].missmatches > 0) {
+                    score -= 1
                 }
                 cards[index].isFacedUp = true
                 indexOfOneAndOnlyFaceUpCard = index
+                cards[index].flipped += 1
             }
         }
         
@@ -56,4 +62,5 @@ class Concentration {
             items -= 1
         }
     }
+    
 }
